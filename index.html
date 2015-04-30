@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>CAUL IRR Stats by lconz-irr</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>CAUL IRR Stats</h1>
+        <h2>Tool to collect numbers for CAUL IRR statistics from DSpace repositories.</h2>
+        <a href="https://github.com/lconz-irr/CAUL-IRR-Stats" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="caul-irr-stats" class="anchor" href="#caul-irr-stats" aria-hidden="true"><span class="octicon octicon-link"></span></a>CAUL-IRR-Stats</h1>
+
+<p>Tool to collect numbers for CAUL IRR statistics from DSpace repositories.</p>
+
+<p>This code was developed for the Library Consortium of New Zealand's IRRs.</p>
+
+<p>Note, this code is unofficial; the definition of the metrics in this code may differ from the CAUL definition.</p>
+
+<h2>
+<a id="metrics" class="anchor" href="#metrics" aria-hidden="true"><span class="octicon octicon-link"></span></a>Metrics</h2>
+
+<blockquote>
+<ol>
+<li>Number of complete works (1) held in the institutional repository/ies, available externally (open access)</li>
+<li>Number of complete works (2) held in the institutional repository/ies for internal access only (authorized user access or dark archive)</li>
+<li>Total number of complete works (3) held in the IR (1 and 2)</li>
+<li>Number of items (4) held in the institutional repository/ies (metadata records only)</li>
+<li>Total number of metadata records added during the year</li>
+<li>Total number of complete works added during the year</li>
+<li>Total number of items held in the institutional repository/ies (3 and 4)</li>
+<li>Number of accesses to complete works in the institutional repository during the year</li>
+<li>Number of accesses to metadata record items in the institutional repository during the year</li>
+<li>Total number of accesses to items held in the institutional repository (8 and 9).</li>
+</ol>
+</blockquote>
+
+<h2>
+<a id="how-this-works--limitations" class="anchor" href="#how-this-works--limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>How this works / limitations</h2>
+
+<p>This code retrieves all "number of" statistics from the DSpace database. It queries the Solr-based statistics to get usage data for each item identified as relevant. DSpace policies for items, bundles and bitstreams are consulted to determine whether a file is a "complete work" or a "metadata record". The repositories for which this code was written don't hold any "complete works for internal access only", so the code does not attempt to detect those. See the comments in IRRStatsController for a starting point to adopt this for other repositories.</p>
+
+<h2>
+<a id="instructions" class="anchor" href="#instructions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instructions</h2>
+
+<p>Compile the files using maven -- in the CAUL-IRR-Stats directory, run:
+    mvn package</p>
+
+<p>This generates a jar file in the <code>target</code> subdirectory.</p>
+
+<p>Make the generated jar file available in the DSpace class-path, eg by placing it into <code>[dspace]/lib</code>. </p>
+
+<p>Then run IRRStatsCreator from the command line via the dsrun command: </p>
+
+<pre><code>[dspace]/bin/dspace dsrun nz.ac.lconz.irr.dspace.app.xmlui.aspect.irrstats.IRRStatsCreator fromDate toDate filename
+</code></pre>
+
+<p>where <code>filename</code> is the name of the output file. This should probably be preceded by cleaning up bot data from the Solr statistics (<code>[dspace]/dspace stats-util -u &amp;&amp; [dspace]/dspace stats-util -i</code>).</p>
+
+<p>The output will be in CSV format as follows:</p>
+
+<pre><code>CountPublicFulltext,n
+CountInternalFulltext,n
+CountAnyFulltext,n
+CountMetadataOnly,n
+AddedMetadataOnly,n
+AddedAnyFulltext,n
+CountAll,n
+AccessAnyFulltext,n
+AccessMetadataOnly,n
+AccessAll,n
+</code></pre>
+
+<p>the order of the metrics corresponds to that in the list above, which in turn is quoted from the IRR stats PDF document distributed by CAUL.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/lconz-irr/CAUL-IRR-Stats/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/lconz-irr/CAUL-IRR-Stats/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/lconz-irr/CAUL-IRR-Stats"></a> is maintained by <a href="https://github.com/lconz-irr">lconz-irr</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-62467742-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
