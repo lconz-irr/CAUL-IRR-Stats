@@ -35,7 +35,7 @@ Make the generated jar file available in the DSpace class-path, eg by placing it
 
 Then run IRRStatsCreator from the command line via the dsrun command: 
 
-    [dspace]/bin/dspace dsrun nz.ac.lconz.irr.dspace.app.xmlui.aspect.irrstats.IRRStatsCreator fromDate toDate filename
+    [dspace]/bin/dspace dsrun nz.ac.lconz.irr.dspace.app.irrstats.IRRStatsCreator fromDate toDate filename
 
 where `filename` is the name of the output file. This should probably be preceded by cleaning up bot data from the Solr statistics (`[dspace]/dspace stats-util -u && [dspace]/dspace stats-util -i`).
 
