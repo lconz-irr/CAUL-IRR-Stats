@@ -19,6 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
+import org.dspace.content.Metadatum;
+
 /**
  * @author Andrea Schweer schweer@waikato.ac.nz for the LCoNZ Institutional Research Repositories
  */
@@ -171,7 +173,8 @@ class IRRStatsController {
 	}
 
 	private boolean addedBefore(Date endDate, Item item) {
-		DCValue[] accessioned = item.getMetadata("dc", "date", "accessioned", Item.ANY);
+		Metadatum[] accessioned = item.getMetadata("dc", "date", "accessioned", Item.ANY);
+
 		try {
 			Date accessionDate = new DCDate(accessioned[0].value).toDate();
 			return accessionDate.before(endDate);
@@ -181,7 +184,7 @@ class IRRStatsController {
 	}
 
 	private boolean addedSince(Date startDate, Item item) {
-		DCValue[] accessioned = item.getMetadata("dc", "date", "accessioned", Item.ANY);
+		Metadatum[] accessioned = item.getMetadata("dc", "date", "accessioned", Item.ANY);
 		try {
 			Date accessionDate = new DCDate(accessioned[0].value).toDate();
 			return !accessionDate.before(startDate);
