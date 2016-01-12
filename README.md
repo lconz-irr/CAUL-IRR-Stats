@@ -39,6 +39,8 @@ Then run IRRStatsCreator from the command line via the dsrun command:
 
 where `filename` is the name of the output file. This should probably be preceded by cleaning up bot data from the Solr statistics (`[dspace]/dspace stats-util -u && [dspace]/dspace stats-util -i`).
 
+Dates need to be given as yyyy-MM-dd; start date is inclusive but end date is exclusive (eg for all of 2012, specify 2012-01-01 2013-01-01).
+
 The output will be in CSV format as follows:
 
     CountPublicFulltext,n
